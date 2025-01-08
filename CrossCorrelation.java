@@ -8,7 +8,6 @@ class CrossCorrelation1 {
         int maxOffset = len1 + len2 - 1; // Nombre total de décalages possibles
         double[] corr = new double[maxOffset];
 
-        // Inverser signal2 avant le calcul de la corrélation
         double[] reversedSignal2 = new double[len2];
         for (int i = 0; i < len2; i++) {
             reversedSignal2[i] = signal2[len2 - 1 - i];
@@ -19,14 +18,14 @@ class CrossCorrelation1 {
             double sum = 0.0;
 
             for (int i = 0; i < len1; i++) {
-                int j = offset - i; // Index du second signal
+                int j = offset - i;
 
-                // Vérifier si l'indice j est dans les limites de signal2
+
                 if (j >= 0 && j < len2) {
                     sum += signal1[i] * reversedSignal2[j];
                 }
             }
-            corr[offset] = sum; // Stocker la valeur de corrélation pour ce décalage
+            corr[offset] = sum;
         }
         return corr;
     }
@@ -43,22 +42,22 @@ class CrossCorrelation2 {
         for (int lag = 0; lag < n2; lag++) {
             double sum = 0;
             for (int i = 0; i < n1; i++) {
-                if (i + lag < n2) {  // évite de dépasser la taille de signal2
+                if (i + lag < n2) {
                     sum += signal1[i] * signal2[i + lag];
                 }
             }
-            result[n1 - 1 + lag] = sum; // Placer dans les indices appropriés
+            result[n1 - 1 + lag] = sum;
         }
 
         // Calcul de la corrélation croisée pour les lags négatifs
         for (int lag = 1; lag < n1; lag++) {
             double sum = 0;
             for (int i = 0; i < n2; i++) {
-                if (i + lag < n1) {  // évite de dépasser la taille de signal1
+                if (i + lag < n1) {
                     sum += signal1[i + lag] * signal2[i];
                 }
             }
-            result[n1 - 1 - lag] = sum; // Placer dans les indices appropriés
+            result[n1 - 1 - lag] = sum;
         }
         double[] resultFinal = new double[result.length];
         for (int i = 0; i < result.length; i++) {
