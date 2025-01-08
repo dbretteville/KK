@@ -1,0 +1,5 @@
+Distribution :  
+Processeur : AMD Ryzen 5 7640HS w/ Radeon 760M Graphics
+Carte Graphique : GeForce RTX 4050 Max-Q / Mobile
+RAM : 16Go
+Disque Dur : SSD NVME M. 2 Crucial P3 plus
